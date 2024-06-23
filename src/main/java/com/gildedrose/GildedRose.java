@@ -40,9 +40,7 @@ class GildedRose {
                 }
             }
 
-            if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                items[i].sellIn = items[i].sellIn - 1;
-            }
+            updateNumberOfRemainingSellInDays(i);
 
             if (items[i].sellIn < 0) {
                 if (!items[i].name.equals(AGED_BRIE)) {
@@ -61,6 +59,12 @@ class GildedRose {
                     }
                 }
             }
+        }
+    }
+
+    private void updateNumberOfRemainingSellInDays(int i) {
+        if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+            items[i].sellIn = items[i].sellIn - 1;
         }
     }
 }
