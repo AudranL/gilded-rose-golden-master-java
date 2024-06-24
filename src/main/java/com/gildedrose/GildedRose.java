@@ -13,46 +13,57 @@ class GildedRose {
 
     public void updateQuality() {
         for (int i = 0; i < items.length; i++) {
-            updateNumberOfRemainingSellInDays(i);
-
-            if (items[i].name.equals(BACKSTAGE_PASSES)) {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
-                    if (items[i].sellIn < 10 && items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
-
-                    if (items[i].sellIn < 5 && items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1;
-                    }
-
-                }
-                if (items[i].sellIn < 0) {
-                    items[i].quality = 0;
-                }
-            } else if (items[i].name.equals(AGED_BRIE)) {
-                if (items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
-
-                }
-                if (items[i].sellIn < 0 && items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1;
-                }
-
-            } else if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-                if (items[i].quality > 0) {
-                    items[i].quality = items[i].quality - 1;
-                }
-                if (items[i].sellIn < 0 && items[i].quality > 0) {
-                    items[i].quality = items[i].quality - 1;
+            if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
+                updateNumberOfRemainingSellInDays(i);
+                if (items[i].name.equals(BACKSTAGE_PASSES)) {
+                    updateBackstagePassesQuality(i);
+                } else if (items[i].name.equals(AGED_BRIE)) {
+                    updateAgedBrieQuality(i);
+                } else {
+                    updateQualityForOtherItems(i);
                 }
             }
         }
     }
 
-    private void updateNumberOfRemainingSellInDays(int i) {
-        if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
-            items[i].sellIn = items[i].sellIn - 1;
+    private void updateQualityForOtherItems(int i) {
+        if (items[i].quality > 0) {
+            items[i].quality = items[i].quality - 1;
         }
+        if (items[i].sellIn < 0 && items[i].quality > 0) {
+            items[i].quality = items[i].quality - 1;
+        }
+    }
+
+    private void updateAgedBrieQuality(int i) {
+        if (items[i].quality < 50) {
+            items[i].quality = items[i].quality + 1;
+
+        }
+        if (items[i].sellIn < 0 && items[i].quality < 50) {
+            items[i].quality = items[i].quality + 1;
+        }
+    }
+
+    private void updateBackstagePassesQuality(int i) {
+        if (items[i].quality < 50) {
+            items[i].quality = items[i].quality + 1;
+            if (items[i].sellIn < 10 && items[i].quality < 50) {
+                items[i].quality = items[i].quality + 1;
+            }
+
+            if (items[i].sellIn < 5 && items[i].quality < 50) {
+                items[i].quality = items[i].quality + 1;
+            }
+
+        }
+        if (items[i].sellIn < 0) {
+            items[i].quality = 0;
+        }
+    }
+
+    private void updateNumberOfRemainingSellInDays(int i) {
+        items[i].sellIn = items[i].sellIn - 1;
+
     }
 }
