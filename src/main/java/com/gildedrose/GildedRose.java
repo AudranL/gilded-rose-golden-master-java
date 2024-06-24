@@ -32,6 +32,17 @@ class GildedRose {
                 }
             }
 
+            if (items[i].name.equals(AGED_BRIE)) {
+                if (items[i].quality < 50) {
+                    items[i].quality = items[i].quality + 1;
+
+                }
+                if (items[i].sellIn < 0 && items[i].quality < 50) {
+                    items[i].quality = items[i].quality + 1;
+                }
+
+            }
+
 
             if (!items[i].name.equals(AGED_BRIE)
                     && !items[i].name.equals(BACKSTAGE_PASSES)) {
@@ -39,10 +50,6 @@ class GildedRose {
                     if (!items[i].name.equals(SULFURAS_HAND_OF_RAGNAROS)) {
                         items[i].quality = items[i].quality - 1; // +5 Dexterity Vest, Elixir of the Mongoose, Conjured Mana Cake
                     }
-                }
-            } else {
-                if (items[i].name.equals(AGED_BRIE) && items[i].quality < 50) {
-                    items[i].quality = items[i].quality + 1; // Aged Brie
                 }
             }
 
@@ -54,10 +61,6 @@ class GildedRose {
                                 items[i].quality = items[i].quality - 1; // +5 Dexterity Vest, Elixir of the Mongoose, Conjured Mana Cake
                             }
                         }
-                    }
-                } else {
-                    if (items[i].quality < 50) {
-                        items[i].quality = items[i].quality + 1; // Aged Brie
                     }
                 }
             }
