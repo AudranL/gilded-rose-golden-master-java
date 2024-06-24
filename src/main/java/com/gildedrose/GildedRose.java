@@ -28,34 +28,31 @@ class GildedRose {
 
     private void updateQualityForOtherItems(int i) {
         if (items[i].quality > 0) {
-            items[i].quality = items[i].quality - 1;
+            items[i].quality--;
         }
         if (items[i].sellIn < 0 && items[i].quality > 0) {
-            items[i].quality = items[i].quality - 1;
+            items[i].quality--;
         }
     }
 
     private void updateAgedBrieQuality(int i) {
         if (items[i].quality < 50) {
-            items[i].quality = items[i].quality + 1;
-
+            items[i].quality++;
         }
         if (items[i].sellIn < 0 && items[i].quality < 50) {
-            items[i].quality = items[i].quality + 1;
+            items[i].quality++;
         }
     }
 
     private void updateBackstagePassesQuality(int i) {
         if (items[i].quality < 50) {
-            items[i].quality = items[i].quality + 1;
+            items[i].quality++;
             if (items[i].sellIn < 10 && items[i].quality < 50) {
-                items[i].quality = items[i].quality + 1;
+                items[i].quality++;
             }
-
             if (items[i].sellIn < 5 && items[i].quality < 50) {
-                items[i].quality = items[i].quality + 1;
+                items[i].quality++;
             }
-
         }
         if (items[i].sellIn < 0) {
             items[i].quality = 0;
@@ -63,7 +60,6 @@ class GildedRose {
     }
 
     private void updateNumberOfRemainingSellInDays(int i) {
-        items[i].sellIn = items[i].sellIn - 1;
-
+        items[i].sellIn--;
     }
 }
